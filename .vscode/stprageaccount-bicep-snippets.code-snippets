@@ -1,22 +1,33 @@
 {
   "Storage Account Resource": {
+    "scope": "bicep",
     "prefix": "bicep-storage",
     "body": [
       "resource ${1:stgName} 'Microsoft.Storage/storageAccounts@2023-01-01' = {",
       "  name: '${2:xyc}${3:env}${4:stg}'",
       "  location: location",
-      "  tags: tags",
-      "  sku: {",
-      "    name: 'Standard_LRS'",
-      "  }",
+      "  sku: { name: 'Standard_LRS' }",
       "  kind: 'StorageV2'",
       "  properties: {",
-      "    accessTier: 'Hot'",
-      "    minimumTlsVersion: 'TLS1_2'",
       "    supportsHttpsTrafficOnly: true",
       "  }",
       "}"
     ],
-    "description": "Standard storage account with org naming convention"
+    "description": "Org-standard storage account"
+  },
+
+  "Key Vault Resource": {
+    "scope": "bicep",
+    "prefix": "bicep-keyvault",
+    "body": [
+      "resource ${1:kvName} 'Microsoft.KeyVault/vaults@2023-01-01' = {",
+      "  name: '${2:xyc}${3:env}${4:kv}'",
+      "  location: location",
+      "  properties: {",
+      "    enableRbacAuthorization: true",
+      "  }",
+      "}"
+    ],
+    "description": "Org-standard Key Vault"
   }
 }
