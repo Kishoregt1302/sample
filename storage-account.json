@@ -1,0 +1,28 @@
+{
+  "Storage Account": {
+    "prefix": "anglo-storage",
+    "body": [
+  "resource storageAccount '${1:Microsoft.Storage/storageAccounts@2021-09-01}' = {",
+  "  name: '${2:sit}-st-${3:env}-${4:appname}-${5:001}'",
+  "  location: resourceGroup().location",
+      "  sku: {",
+      "    name: '${6|Standard_LRS,Standard_GRS,Standard_RAGRS,Standard_ZRS,Premium_LRS,Premium_ZRS|}'",
+      "  }",
+      "  kind: '${7|StorageV2,BlobStorage,BlockBlobStorage,FileStorage,Storage|}'",
+      "  properties: {",
+      "    allowBlobPublicAccess: ${8|false,true|}",
+      "    minimumTlsVersion: 'TLS1_2'",
+      "    networkAcls: {",
+      "      bypass: 'AzureServices'",
+      "      defaultAction: '${9|Deny,Allow|}'",
+      "    }",
+      "    supportsHttpsTrafficOnly: true",
+      "  }",
+      "}",
+      "",
+      "output storageAccountName string = storageAccount.name",
+      "output storageAccountId string = storageAccount.id"
+    ],
+    "description": "Create an Azure Storage Account with Anglo naming conventions"
+  }
+}
