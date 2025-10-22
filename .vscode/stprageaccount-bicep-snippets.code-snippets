@@ -1,0 +1,22 @@
+{
+  "Storage Account Resource": {
+    "prefix": "bicep-storage",
+    "body": [
+      "resource ${1:stgName} 'Microsoft.Storage/storageAccounts@2023-01-01' = {",
+      "  name: '${2:xyc}${3:env}${4:stg}'",
+      "  location: location",
+      "  tags: tags",
+      "  sku: {",
+      "    name: 'Standard_LRS'",
+      "  }",
+      "  kind: 'StorageV2'",
+      "  properties: {",
+      "    accessTier: 'Hot'",
+      "    minimumTlsVersion: 'TLS1_2'",
+      "    supportsHttpsTrafficOnly: true",
+      "  }",
+      "}"
+    ],
+    "description": "Standard storage account with org naming convention"
+  }
+}
